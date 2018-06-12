@@ -212,7 +212,7 @@ class CoreNLPClient(RobustService):
         return doc
 
     def tokensregex(self, text, pattern, filter=False, to_words=False, annotators=None, properties=None):
-        matches = self.__regex('/tokensregex', text, pattern, filter)  +        # Error occurs unless put properties in params
+        # Error occurs unless put properties in params
         if properties is None:
             properties = self.default_properties
             properties.update({
@@ -222,9 +222,9 @@ class CoreNLPClient(RobustService):
                 'serializer': 'edu.stanford.nlp.pipeline.ProtobufAnnotationSerializer'
             })
         matches = self.__regex('/tokensregex', text, pattern, filter, properties)
-         if to_words:
-             matches = regex_matches_to_indexed_words(matches)
-         return matches
+        if to_words:
+            matches = regex_matches_to_indexed_words(matches)
+        return matches
 
     def semgrex(self, text, pattern, filter=False, to_words=False):
         matches = self.__regex('/semgrex', text, pattern, filter)
